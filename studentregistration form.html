@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 10px;
+            vertical-align: top;
+        }
+
+        td:first-child {
+            width: 35%;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="password"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 9px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #007BFF;
+        }
+
+        .gender {
+            padding-top: 8px;
+        }
+
+        .gender input {
+            width: auto;
+            margin-right: 5px;
+        }
+
+        .buttons {
+            text-align: center;
+            padding-top: 20px;
+        }
+
+        input[type="submit"],
+        input[type="reset"] {
+            width: 48%;
+            padding: 10px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF;
+        }
+
+        input[type="reset"] {
+            background-color: #dc3545;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        input[type="reset"]:hover {
+            background-color: #c82333;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            td {
+                display: block;
+                width: 100% !important;
+            }
+
+            .buttons input {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Student Registration Form</h2>
+
+    <form id="registrationForm">
+
+        <table>
+            <tr>
+                <td>Full Name</td>
+                <td>
+                    <input type="text" id="fullname" name="fullname" required>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Father's Name</td>
+                <td>
+                    <input type="text" id="fathername" name="fathername" required>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Email</td>
+                <td>
+                    <input type="email" id="email" name="email" required>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Phone Number</td>
+                <td>
+                    <input type="tel"
+                           id="phone"
+                           name="phone"
+                           pattern="[0-9]{10}"
+                           maxlength="10"
+                           required>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Date of Birth</td>
+                <td>
+                    <input type="date" id="dob" name="dob" required>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Gender</td>
+                <td class="gender">
+                    <label>
+                        <input type="radio" name="gender" value="Male" required>
+                        Male
+                    </label>
+
+                    <label>
+                        <input type="radio" name="gender" value="Female">
+                        Female
+                    </label>
+
+                    <label>
+                        <input type="radio" name="gender" value="Other">
+                        Other
+                    </label>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Course</td>
+                <td>
+                    <select id="course" name="course" required>
+                        <option value="">-- Select Course --</option>
+                        <option value="AIML">AIML</option>
+                        <option value="CSE">CSE</option>
+                        <option value="ELECTRICAL">ELECTRICAL</option>
+                        <option value="ETC">ETC</option>
+                        <option value="MECHANICAL">MECHANICAL</option>
+                        <option value="ITI">ITI</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Address</td>
+                <td>
+                    <textarea id="address"
+                              name="address"
+                              rows="4"
+                              required></textarea>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Password</td>
+                <td>
+                    <input type="password"
+                           id="password"
+                           name="password"
+                           minlength="8"
+                           required>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Confirm Password</td>
+                <td>
+                    <input type="password"
+                           id="confirm_password"
+                           name="confirm_password"
+                           minlength="8"
+                           required>
+                </td>
+            </tr>
+        </table>
+
+        <div class="buttons">
+            <input type="submit" value="Register">
+            <input type="reset" value="Reset">
+        </div>
+
+    </form>
+</div>
+
+<script>
+    document.getElementById("registrationForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const fullname = document.getElementById("fullname").value.trim();
+        const fathername = document.getElementById("fathername").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const dob = document.getElementById("dob").value;
+        const course = document.getElementById("course").value;
+        const address = document.getElementById("address").value.trim();
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("confirm_password").value;
+        const gender = document.querySelector('input[name="gender"]:checked');
+
+        // Name validation
+        const namePattern = /^[A-Za-z ]+$/;
+
+        if (!namePattern.test(fullname)) {
+            alert("Full Name should contain only alphabets and spaces.");
+            return;
+        }
+
+        if (!namePattern.test(fathername)) {
+            alert("Father's Name should contain only alphabets and spaces.");
+            return;
+        }
+
+        // Email validation
+        const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+
+        if (!emailPattern.test(email)) {
+            alert("Please enter a valid Email address.");
+            return;
+        }
+
+        // Phone validation
+        const phonePattern = /^[0-9]{10}$/;
+
+        if (!phonePattern.test(phone)) {
+            alert("Phone Number must contain exactly 10 digits.");
+            return;
+        }
+
+        // Date validation
+        if (dob === "") {
+            alert("Please select your Date of Birth.");
+            return;
+        }
+
+        const today = new Date();
+        const birthDate = new Date(dob);
+
+        if (birthDate > today) {
+            alert("Date of Birth cannot be a future date.");
+            return;
+        }
+
+        // Gender validation
+        if (!gender) {
+            alert("Please select your Gender.");
+            return;
+        }
+
+        // Course validation
+        if (course === "") {
+            alert("Please select a Course.");
+            return;
+        }
+
+        // Address validation
+        if (address.length < 10) {
+            alert("Address must contain at least 10 characters.");
+            return;
+        }
+
+        // Password validation
+        if (password.length < 8) {
+            alert("Password must contain at least 8 characters.");
+            return;
+        }
+
+        if (confirmPassword === "") {
+            alert("Please confirm your Password.");
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            alert("Password and Confirm Password do not match.");
+            return;
+        }
+
+        alert("Registration Successful!");
+    });
+
+    // Reset message
+    document.getElementById("registrationForm").addEventListener("reset", function () {
+        // Browser automatically clears the form.
+    });
+</script>
+
+</body>
+</html>
